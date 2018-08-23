@@ -1,0 +1,72 @@
+﻿body
+{
+    background-color:rgba(255, 216, 0, 0.35);
+}
+
+li {
+    list-style-type: none;
+    width: 41.5em;
+    cursor: default;
+    padding-bottom: 5px;
+}
+
+
+.main-container {
+    margin-left: 40em;
+    /*height: auto;*/
+ 
+    border: 0px solid black;
+    width: 174px;
+    /*margin-top: 250px;*/
+}
+
+li:hover
+{
+    background-color:rgb(0, 148, 255);
+   
+}
+input {
+    display: inline;
+    width: 50em;
+    margin-top:100px;
+    /*position:absolute;*/
+    height:20px;
+}
+ul {
+    width: 41.5em;
+    margin-top:-1px;
+    border: 1px solid black;
+    min-height: 0px;
+    max-height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-left: 0px;
+}
+#cross
+{
+    visibility:hidden;
+    /*position:relative;
+    left:10.5em;
+    bottom:40px;*/
+    position:absolute;
+    left:48.5em;
+    bottom:1px;
+    height:25px;
+   
+}
+.text-and-button {
+   
+    position: relative;
+}
+img {
+    margin-top: 10em;
+    margin-left: 5em;
+}
+
+.selected {
+    background-color: rgb(0, 148, 255);
+}
+.list-item
+{
+    background-color:rgb(255, 255, 255);
+}

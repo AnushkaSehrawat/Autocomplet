@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="AutoComplete.css" type="text/css">
+</head>
+<body>
+    
+   
+           <section class="main-container">
+               <img src="download.jpg">
+               <section class="text-and-button">
+                   <input id="myInput" type="text" placeholder="Search" ><button id="cross"></button>
+                  
+               </section>
+               <ul id="suggestion"></ul>
+              
+               
+          </section>
+   
+       
+    
+
+    <script>
+        var array = ["India","Delhi", "Indonesia","Afghanistan","Australia","Dehradun","Jaipur"];
+        autocomplete(document.getElementById("myInput"), array);
+        var refarray=[];
+        var count = 0;
+        var index = 0;
+        function autocomplete(inp, array)
+        {
+            
+            
+            inp.addEventListener("input", function (e) {
+
+
+                index = 0;
+                document.getElementById("suggestion").innerHTML = " ";
+                document.getElementById("cross").innerHTML = " ";
+                refarray = [];
+                count = 0;
+                var currentfocus = -1;
+                
+                
+                var val = this.value;
+                var a;
+                var b;
+                if (val=="")
+                {
+                    document.getElementById("cross").style.visibility = "hidden";
+                    return false;
+                }
+
+               
+                    document.getElementById("cross").style.visibility = "visible";
+                    document.getElementById("cross").innerHTML = "X";
+
+                    document.getElementById("cross").addEventListener("click", function () {
+                        document.getElementById("myInput").value = "";
+
+                    });
+                
+                    
+                
+                
+                for (var i = 0; i < array.length; i++)
+                {
+                 
+                    if ((array[i].toUpperCase()).includes(val.toUpperCase()))
+                    {
+                        
+                        refarray.push(array[i]);
+                        
+                    }
+
+                }
+                refarray.sort();
+
+                if (refarray.length != 0) {
+                   
+
+                    for (var i = 0; i < refarray.length; i++) {
+
+                        a = document.createElement("li");
+                        a.setAttribute("class","list-item");
+                        a.innerHTML = refarray[i];
+
+                       
+                       
+                        a.addEventListener("click", function () {
+
+
+                                document.getElementById("myInput").value = this.innerHTML;
+                            });
+                            document.getElementById("suggestion").appendChild(a);
+                       
+
+                    }
+                }
+
+                else
+                {
+                    
+                    a = document.createElement("li");
+                    a.innerHTML = "No Data Found";
+                    document.getElementById("suggestion").appendChild(a);
+                }
+
+            });
+           
+            
+            inp.addEventListener("keydown", function (e) {
+              
+                if (e.which == 40 || e.which == 38 || e.which == 13)
+                {
+                    
+                    var data = document.getElementsByTagName("li"); 
+                    console.log(data);
+                    if (e.which == 40)
+                    { 
+                        if (index == 0) {
+                           
+                            data[index].setAttribute("class", "selected");
+                            index++; 
+                        }
+                        else
+                        {
+                           
+                            data[index - 1].setAttribute("class", "list-item");
+                            
+                            data[index].setAttribute("class", "selected");
+                           
+                            index++;  
+                            
+                        } 
+                       
+                        if (data.length > 5) {
+                            document.getElementById("suggestion").scrollBy(0, 20);
+                        }
+                       
+                       
+                    }
+
+                    else if (e.which == 38)
+                    {
+                        index--; 
+                        data[index - 1].setAttribute("class", "selected");
+                        
+                        data[index].setAttribute("class", "list-item"); 
+                            document.getElementById("suggestion").scrollBy(0, -28); 
+                        
+                    }
+                    else
+                    {
+                        index--; 
+                        document.getElementById("myInput").value = data[index].innerHTML;
+                        document.getElementById("suggestion").innerHTML = " ";
+                    }
+                }
+
+            });
+        }
+        document.addEventListener("click", function (e) {
+            if (e.target.id!=="myInput")
+                document.getElementById("suggestion").innerHTML = "";
+            
+
+        });
+
+    </script>
+
+</body>
+</html>
